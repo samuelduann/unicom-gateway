@@ -91,6 +91,12 @@ router.get('/gb/api/pay_order', async (ctx, next) => {
   let now = new Date().toUTCString()
   console.log(`${now} pay_order ${ctx.request.decryptedParams.orderNumber} ${ret.resultCode} ` + JSON.stringify(ret))
 
+  let orderNumber = ctx.request.decryptedParams.orderNumber
+  await Model.UnicomOrder.update({
+    status: ret.resultCode == 'SUCCESS' ? 1 : 2,
+    code: ret.resultCode == 'SUCCESS' ? 0 : ret.resultCode
+  }, {where: {orderNumber}})
+
   ctx.body = ret
 })
 
