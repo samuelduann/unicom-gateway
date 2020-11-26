@@ -6,6 +6,7 @@ const morgan = require('koa-morgan')
 
 const Cryptor = require('./cryptor.js').Cryptor
 const WoClient = require('./woclient.js')
+const Model = require('./model.js')
 
 const port = 3000
 const SESSION_TTL = 3600 * 1000
@@ -70,6 +71,16 @@ router.get('/gb/api/place_order', async (ctx, next) => {
 
   let now = new Date().toUTCString()
   console.log(`${now} ${data.phone} place_order ${productId} ${ret.resultCode}` + JSON.stringify(ret))
+
+  Model.UnicomOrder.create({
+    phone: data.phone,
+    orderNumber: ret.data.orderNumber,
+    productId: productId,
+    productName: ret.data.productName,
+    productPrice: ret.data.productPrice,
+    cpId: 'wccs', // TODO! mapping merchantId to cpId
+    merchantId: ctx.request.query.merchantId
+  })
 
   ctx.body = ret
 })

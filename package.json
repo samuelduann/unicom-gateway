@@ -6,6 +6,8 @@
     "got": "^11.8.0",
     "koa": "^2.13.0",
     "koa-morgan": "^1.0.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5",
     "string-random": "^0.1.3"
   }
 }
