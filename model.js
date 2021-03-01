@@ -1,6 +1,12 @@
 const { Sequelize, Model, DataTypes } = require('sequelize')
 
-const sequelize = new Sequelize('mysql://unicom:Un1c@M-2020@localhost:3306/unicom')
+const sequelize = new Sequelize('mysql://invoice2:Invo1ce@@localhost:3306/invoice2')
+
+class Invoice extends Model {}
+
+Invoice.init({
+    
+})
 
 class UnicomOrder extends Model {}
 

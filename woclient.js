@@ -19,7 +19,7 @@ function WoClient(opt) {
     let endpoint = WO_ACTIONS[action].endpoint
     // request!
     try {
-      const response = await got.get(`${this.options.base_url}${endpoint}`, {
+      let response = await got.get(`${this.options.base_url}${endpoint}`, {
         searchParams: {cpId: this.options.cpId, param: param, sign: sign},
         responseType: 'json'
       })

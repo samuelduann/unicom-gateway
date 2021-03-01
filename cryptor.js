@@ -1,10 +1,11 @@
 const crypto = require('crypto')
 
-const key = '7e50dda2215ec70cf3fd556bbcbf5612'
+const key = '7e50dda2215ec70cf3fd556bbcbf5613'
 
 function aesDecrypt(key, buf){
   const decipher = crypto.createDecipheriv('aes-128-ecb', Buffer.from(key, "hex"), '')
   let text = [decipher.update(buf, 'hex', 'ascii'), decipher.final('ascii')].join('')
+  console.log(text)
   return text
 }
 
